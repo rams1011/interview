@@ -5,20 +5,13 @@ import lombok.Builder;
 import lombok.Data;
 
 @Entity
-@Table(name="employee")
+@Table(name="audit")
 @Data
 @Builder
-public class EmployeeEntity {
-
+public class AuditEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    private String name;
-
-    private int age;
-
-    private String gender;
-
-    private String dob;
+    private String loggedInUser;
 }

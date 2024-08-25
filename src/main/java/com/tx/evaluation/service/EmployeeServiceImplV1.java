@@ -5,6 +5,7 @@ import com.tx.evaluation.entity.EmployeeEntity;
 import com.tx.evaluation.repository.EmployeeRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -19,6 +20,9 @@ public class EmployeeServiceImplV1 implements EmployeeService{
     public Employee getEmployeeById(Long id) {
         log.info("************* EmployeeServiceImplV1 Called*************");
         Optional<EmployeeEntity> employeeEntityOpt = employeeRepository.findById(id);
+
+
+
         if(employeeEntityOpt.isPresent()){
             EmployeeEntity employeeEntity = employeeEntityOpt.get();
             return Employee.builder()
@@ -33,5 +37,16 @@ public class EmployeeServiceImplV1 implements EmployeeService{
         }
 
 
+    }
+
+    @Override
+    public void saveEmployee(Employee employee) {
+       EmployeeEntity employeeEntity = EmployeeEntity.builder()
+               .name(employee.getName())
+               .age(employee.getAge())
+               .dob(employee.getDob())
+               .gender(employee.getGender())
+               .build();
+       employeeRepository.save(employeeEntity);
     }
 }

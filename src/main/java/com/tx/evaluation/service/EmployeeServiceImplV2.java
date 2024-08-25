@@ -5,13 +5,15 @@ import com.tx.evaluation.entity.EmployeeEntity;
 import com.tx.evaluation.repository.EmployeeRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
-@Service
+
 @Slf4j
+@Service
 public class EmployeeServiceImplV2 implements EmployeeService{
 
     @Autowired
@@ -32,5 +34,16 @@ public class EmployeeServiceImplV2 implements EmployeeService{
         } else {
             return null;
         }
+    }
+
+    @Override
+    public void saveEmployee(Employee employee) {
+        EmployeeEntity employeeEntity = EmployeeEntity.builder()
+                .name(employee.getName())
+                .age(employee.getAge())
+                .dob(employee.getDob())
+                .gender(employee.getGender())
+                .build();
+        employeeRepository.save(employeeEntity);
     }
 }

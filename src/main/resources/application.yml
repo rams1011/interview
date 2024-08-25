@@ -1,2 +1,6 @@
-service:
+employee-service:
   version: v1
+
+employee:
+   name: "Rakesh"
+   age: "30"
