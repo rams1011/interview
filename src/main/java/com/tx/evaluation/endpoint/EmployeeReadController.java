@@ -7,9 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class EmployeeReadController {
@@ -18,8 +16,7 @@ public class EmployeeReadController {
     EmployeeService employeeService;
 
     @GetMapping("/{id}")
-    ResponseEntity<Employee> getEmployeeById(@PathVariable Long id){
+    public ResponseEntity<Employee> getEmployeeById(@PathVariable Long id){
         return new ResponseEntity<>(employeeService.getEmployeeById(id),HttpStatus.OK);
     }
-
 }

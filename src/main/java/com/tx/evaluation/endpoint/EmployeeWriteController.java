@@ -16,7 +16,7 @@ public class EmployeeWriteController {
     EmployeeService employeeService;
 
     @PostMapping
-    ResponseEntity<Void> saveEmployee(@RequestBody Employee employee){
+    public ResponseEntity<Void> saveEmployee(@RequestBody Employee employee ){
         employeeService.saveEmployee(employee);
        return new ResponseEntity<>(HttpStatus.CREATED);
     }
