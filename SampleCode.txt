@@ -1,0 +1,23 @@
+package com.tx.services.test.api.endpoint;
+
+public class Parent {
+ public static String fileName = "Parent.xml";
+
+}
+
+public class Child extends Parent{
+ public Child(){
+  fileName = "Child.xml";
+ }
+}
+
+public class Test{
+
+ public static void main(String args[]){
+  System.out.println(Parent.fileName);
+  System.out.println(Child.fileName);
+  Child c = new Child();
+  System.out.println(Parent.fileName);
+  System.out.println(Child.fileName);
+ }
+}
