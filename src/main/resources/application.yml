@@ -1,6 +1,8 @@
 employee-service:
   version: v1
 
-employee:
-   name: "Rakesh"
-   age: "30"
+endpoint:
+   url:
+   userName:
+   password:
+   retry:
