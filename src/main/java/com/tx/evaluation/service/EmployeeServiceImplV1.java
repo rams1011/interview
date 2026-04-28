@@ -1,5 +1,6 @@
 package com.tx.evaluation.service;
 
+import com.tx.evaluation.config.Endpoint;
 import com.tx.evaluation.dto.Employee;
 import com.tx.evaluation.entity.EmployeeEntity;
 import com.tx.evaluation.repository.EmployeeRepository;
@@ -18,8 +19,12 @@ public class EmployeeServiceImplV1 implements EmployeeService {
     @Autowired
     EmployeeRepository employeeRepository;
 
+    @Autowired
+    Endpoint endpoint;
+
     public Employee getEmployeeById(Long id) {
         log.info("************* EmployeeServiceImplV1 Called*************");
+        log.info(endpoint.toString());
         Optional<EmployeeEntity> employeeEntityOpt = employeeRepository.findById(id);
         if (employeeEntityOpt.isPresent()) {
             EmployeeEntity employeeEntity = employeeEntityOpt.get();

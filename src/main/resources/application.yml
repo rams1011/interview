@@ -2,7 +2,7 @@ employee-service:
   version: v1
 
 endpoint:
-   url:
-   userName:
-   password:
-   retry:
+   url: https://testurl.com
+   userName: user
+   password: user123
+   retry: true
