@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name="employee")
 @Data
@@ -25,4 +27,8 @@ public class EmployeeEntity {
     private String gender;
 
     private String dob;
+
+    private LocalDateTime createdOn;
+
+    private LocalDateTime updatedOn;
 }

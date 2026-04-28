@@ -8,11 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Service
 @Slf4j
-public class EmployeeServiceImplV1 implements EmployeeService{
+public class EmployeeServiceImplV1 implements EmployeeService {
 
     @Autowired
     EmployeeRepository employeeRepository;
@@ -20,10 +21,7 @@ public class EmployeeServiceImplV1 implements EmployeeService{
     public Employee getEmployeeById(Long id) {
         log.info("************* EmployeeServiceImplV1 Called*************");
         Optional<EmployeeEntity> employeeEntityOpt = employeeRepository.findById(id);
-
-
-
-        if(employeeEntityOpt.isPresent()){
+        if (employeeEntityOpt.isPresent()) {
             EmployeeEntity employeeEntity = employeeEntityOpt.get();
             return Employee.builder()
                     .id(employeeEntity.getId())
@@ -35,18 +33,18 @@ public class EmployeeServiceImplV1 implements EmployeeService{
         } else {
             return null;
         }
-
-
     }
 
     @Override
     public void saveEmployee(Employee employee) {
-       EmployeeEntity employeeEntity = EmployeeEntity.builder()
-               .name(employee.getName())
-               .age(employee.getAge())
-               .dob(employee.getDob())
-               .gender(employee.getGender())
-               .build();
-       employeeRepository.save(employeeEntity);
+        EmployeeEntity employeeEntity = EmployeeEntity.builder()
+                .name(employee.getName())
+                .age(employee.getAge())
+                .dob(employee.getDob())
+                .gender(employee.getGender())
+                .createdOn(LocalDateTime.now())
+                .updatedOn(LocalDateTime.now())
+                .build();
+        employeeRepository.save(employeeEntity);
     }
 }
